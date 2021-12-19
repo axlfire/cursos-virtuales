@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>formularios</title>
+  </head>
+  <body>
+    <!--se utiliza para crear formularios, los atributos que poseen son:
+        action:indica que se hace con los datos ingresados en el campo
+                action:"archivoGenerico.php"
+                      este hace que los datos en el campo sean enviados a
+                      el archivo php nombrado "archivoGenerico"
+
+        method:indica la forma en la que se enviaria los datos de el formulario
+               get: los datos se envian a traves de la direccion de url
+              post: los datos no se muestran en la direccion de url
+
+        name: permite usarlo como identificador al momento de interactuar con el
+              usando otros archivos y o paginas que requieran modificar
+               revisar o ingresar datos
+
+       id: permite relacionarla con una label
+
+            -->
+
+
+    <!--
+      input
+      type:define el tipo de input a usar
+        <input type="button"> = crea un boton
+
+        <input type="checkbox">=  crea un cuadro de seleccion vacio, el cual
+                                  al ser seleccionado es rellenado
+
+        <input type="color"> =se usa para campos que requieren que se ingrese un
+                              color, dependiendo de el navegador se puede
+                              mostrar un seleccionador de color
+
+        <input type="date">= se utiliza para seleccionar una fecha, el navegador
+                             puede mostrar un calendario para este proposito.
+
+                            se puede utilizar atributos de min/max para limitar
+                            las fechas a seleccionador
+                            ejemplo:
+                            <input type="date" id="datemin" name="datemin" min="2000-01-02">
+
+        <input type="datetime-local">= se utiliza para seleccionar una fecha
+                                       y hora especifica
+
+        <input type="email">= crea un campo especial que se utiliza para ingresar
+                              un correo electronico,algunos navegadores pueden
+                              validar inmediatemente si es una direccion de correo
+                              valida(mas no si existe) y en el caso de los celulares
+                              añadira la opcion de ".com" como tecla de manera
+                              instantanea al detectar este campo
+
+        <input type="file">= crea un campo para subir archivos
+
+        <input type="hidden"> = crea campos que pueden ser utilizados para
+                                guardar informacion, estos no son como tal
+                                vistos por el usuario y no pueden ser editados
+                                por el mismo, no obstante pueden ser editados
+                                mediante herramientas de desarrollador y/o
+                                inspeccionar
+        <input type="image"> =  crea un boton usando una imagen, las dimensiones
+                                de el boton son dadas por defecto por la imagen
+                                sin embargo eso no quiere decir que no puedan ser
+                                definirse las dimensiones a preferencia
+
+        <input type="month"> =crea un campo para seleccionar mes y año
+
+        <input type="number">= crea un campo para insertar numeros, tambien puede
+                               establecerse un rango de numeros que puede recibir
+                               utilizando min y max
+                               ejemplo:
+                               <input type="number" id="quantity" name="quantity" min="1" max="5">
+
+        <input type="password">= cuadro de texto simple, muestra los caracteres
+                                 como si fueran asteriscos o puntos
+        <input type="radio"> = crea un boton de radio, o mejor dicho seleccion,
+                               muestra un circulo vacio que al ser seleccionado
+                               puede cambiar de color, o tener un circulo mas
+                               pequeño al interior
+        <input type="range"> = se utiliza para un valor numerico el cual su
+                               valor exacto no es importante, se le puede definir
+                               un rango utilizando "min"-"max", utilizando
+                               "step" se puede definir un intervalo de numeros
+                               aceptados, "value" especifica el valor por defecto
+
+        <input type="reset">= crea un boton que restaura a sus valores por
+                              defecto todos los campos en el formulario
+        <input type="search"> =crea un campo para busquedas por defecto, se
+                               comporta como un campo de texto comun y corriente
+        <input type="submit"> = crea un boton para enviar los datos de una forma
+                                o formulario
+        <input type="tel">= crea un campo especifico para ingresar un telefono
+                            si este no esta soportado va a utilizar por defecto
+                            text
+
+        <input type="text"> = cuadro de texto simple
+
+        <input type="time"> =crea un campo para seleccionar una hora en especifico
+
+        <input type="url">= crea un campo para ingresar una url
+
+        <input type="week">=crea un campo para seleccionar una semana en
+                            un mes especifico
+
+        estas tambien tienen la posibilidad de definirse ciertos atributos,
+        algunos de ellos son:
+
+          checked:especifica que esta casilla debe estar marcada por defecto al
+                  cargar la pagina
+
+          disabled	desactiva el input al que se le asigno este atributo
+
+          max	especifica el valor maximo de un campo
+
+          min	especifica el valor minimo de un campo
+
+          maxlength	numero maximo de caracteres en un campo
+
+          pattern	especifica una expresion con la que se va a comparar el texto
+                  ejemplo:
+                  [A-Za-z]{3}
+                  esta indicando un grupo de 3 letras mayusculas o minusculas
+                  pero no numeros
+
+          readonly especifica qeu este campo es de solo lectura y no puede ser
+                   modificado
+
+          required especifica que esta entrada es obligtoria y no debe estar
+                   vacia al momento de ser ingresada
+
+          size	especifica el ancho de un input
+
+          value	especifica el valor por defecto de un input
+
+          placeholder: crea un texto que se desaparece al momento de
+                       ingresar un valor en la casilla o input al que se le
+                       asigne
+  -->
+    <form class="" action="" method="">
+
+      <input type="text" name="nombre" placeholder="nombre">
+        <br>
+        <br>
+
+        <label for="seleccionar">seleccione</label>
+      <select class="comboBox" name="seleccionarSeleccion"id="seleccionar">
+        <option value=0>seleccionar tipo de seleccion</option>
+        <option value=1>selecciondo esta</option>
+        <option value=2>seleccionando aquella</option>
+      </select>
+      <br>
+      <textarea name="name" cols="34" >explique porque selecciono esta selección</textarea>
+      <br>
+      <br>
+      <input type="radio" name="seleccion" value="seleccionA"id="seleccionA"><label for="seleccionA">seleccionA</label>
+      <input type="radio" name="seleccion" value="seleccionB"id="seleccionB"><label for="seleccionB">seleccionB</label>
+
+      <br>
+      <br>
+      <input type="file" name="certificado" value="certificado"id="certificiado">ingrese aqui su certificado</input>
+      <br>
+      <br>
+      <input type="checkbox" name="sesualidad" value="seguro" id="seguro"><label for="seguro" >marque aqui si esta seguro de su sexualidad</label>
+      <br>
+      <br>
+      <label for="sexo">sexo</label>
+      <select class "comboBox" name="seleccionarSexo"id="sexo">
+        <option value="0">seleccione</option>
+        <option value=male>hombre</option>
+        <option value=female>mujer</option>
+        <br>
+        <br>
+        <input type="submit" name="boton Ingreso" value="ingreso">
+      </select>
+    </form>
+  </body>
+</html>

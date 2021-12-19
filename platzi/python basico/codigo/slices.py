@@ -1,0 +1,10 @@
+palabra=input("ingrese palabra  bastante larga: ")
+
+print("split [0:3](desde 0 hasta 3)= "+palabra[0:3])
+print("split [3:]desde la posicion 3 hasta el final= "+palabra[3:])
+print("split[:3]desde el inicio hasta la posicion 3= "+palabra[:3])
+longitud_palabra=len(palabra)
+longitud_palabraSTR=str(len(palabra))
+print("split[x:y:z] (ir desde el caracter x hasta y saltand z cantidad de letras) split[0:"+longitud_palabraSTR +"2]= "+palabra[0:longitud_palabra:2])
+print("split[::] devuelve la palabra, usa los valores por defecto= "+palabra[::])
+print("split[::-1] recorre la palabra de manera inversa= "+palabra[::-1])

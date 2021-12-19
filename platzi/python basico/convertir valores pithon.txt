@@ -1,0 +1,17 @@
+NOTA 1:python3 [file]-->esta madre pa que le corra pai
+
+NOTA 3:y no se obsesione con linux y windows, y salga de latinoamerica
+
+NOTA 4:aprenda a contar
+
+si x tiene un valor Y como string pero necesito que se comporte como un numero usar:
+
+x=float(x)
+Y.Y
+-------------
+x=int(x)
+Y
+---------------
+x=str(x)
+'Y'
+

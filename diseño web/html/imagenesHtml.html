@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>imagenes</title>
+  </head>
+  <body>
+    <!--<img> es una etiqueta que no tiene que cerrarse
+    tiene atributos como width(ancho)
+                        height(alto)
+    se pueden modificar ambos pero se recomienda solo modificar 1
+    los archivos se cargan segun la carpeta de el archivo, por ejemplo
+
+    la imagen se encuentra en una subcarpeta de la cual contiene ESTE
+    archivo, por lo que se usa[carpeta]/[nombre archivo]
+    esto se puede extender por tantas carpetas como se necesite
+    [carpeta]/[carpeta]/[carpeta]/.../[archivo]
+
+    asi mismo, si el la imagen se encuentra en una carpeta de la cual
+    el archivo esta en una subcarpeta(es decir, la imagen no esta dentro
+    de la carpeta, esta fuera de ella) se utilizan puntos, asi:
+    ../[nombre archivo]
+    tambien se puede extender tanto como quiera
+    ../../../../[nombre de archivo]
+
+    el archivo debe tener su formato[.jpg .png etc]
+
+    -->
+
+    <p>original</p>
+    <img src="imagenes/3ug8mhcpq5k41.jpg">
+    <p>ancho modificado</p>
+    <img src="imagenes/3ug8mhcpq5k41.jpg" width="200">
+    <p>altura modificada</p>
+    <img src="imagenes/3ug8mhcpq5k41.jpg" height="200">
+
+    <p>ejemplo atributo alt</p>
+
+    <!--alt permite que el usuario en caso de el archivo no se pueda encontrar
+    al momento de desplegar el archivo tenga un texto alternativo-->
+    <img src="imagenes/3ug8mhcpq5k41.jpg" alt="no se va a usar">
+    <p>sin alt</p>
+    <img src="imagenes/3ug8mhcpdsq5k41.jpg">
+    <p>texto siendo utilizado como alt</p>
+    <img src="imagenes/3ug8mhcpdsq5k41.jpg" alt=" no se encontro la imagen">
+    <p>imagen como alt</p>
+    <img src="imagenes/3ug8mhcpq5fffk41.jpg" alt="imagenes/ybtof7bbgd331l.jpg">
+
+    <p>atributo title para añadir texto al pasar el mouse sobre la imagen</p>
+    <img src="imagenes/ybtof7bbgd331.jpg"title="la yang" width="200">
+
+    <p>imagen como enlace</p>
+    <a href="encabezados.html">
+      <img src="imagenes/wallpaper_void_large.png" width="550"> 
+    </a>
+  </body>
+</html>
