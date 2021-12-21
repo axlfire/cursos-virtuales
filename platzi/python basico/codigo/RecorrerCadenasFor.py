@@ -24,7 +24,7 @@ def recorrerNombre():
 def recorrer2n2 ():
     nombre=pedirNombre()
     for letra in range(0,len(nombre),2):
-        print(nombre[int(letra)] )
+        print(nombre[int(letra)].upper() )
 
 
 #------config-------
