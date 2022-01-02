@@ -1,0 +1,14 @@
+-python3 .m venv [Name]
+  crear un entorno virtual
+
+source [Name]/bin/activate
+    activar el entorno virtual
+deactivate
+    salir de el entorno virtual
+
+pip install Django [-U]
+    instalar Django en el entorno virtual
+      -U instalar ultima version de Django
+
+pip(3) freeze [> apuntes.txt]
+    muestra los paquetes instalados [y los exporta como un txt]
