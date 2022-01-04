@@ -12,3 +12,52 @@ pip install Django [-U]
 
 pip(3) freeze [> apuntes.txt]
     muestra los paquetes instalados [y los exporta como un txt]
+
+Django-admin
+    muestra todos los comando de la interfaz de Django
+
+python[3] manage.py
+    ejecuta manage.py, muestra diferentes comandos de interes para el proyecto
+
+    python[3] manage.py
+      inicia el servidor
+  ------------------------------------------------------------
+
+  archivos de un proyecto nuevo
+  __init__.py
+    declarar el proyecto como modulo de python
+
+  settings.py
+    configuraciones del proyecto
+
+      BASE_DIR: ruta donde se ejecuta el proyecto
+
+      DEBUG: permite la visualizacion a detalle de errores y facilita el seguimiento de los mismos
+
+      ALLOWED_HOSTS: indica cuales host pueden acceder/interactuar con el proyecto
+
+      DATABASES: se especifica la base de datos que se utiliza, por defecto sqlite3
+                'default':{
+                'ENGINE':'django.db.backends.mysql',
+                'NAME':'DjangoDB',
+                'USER':'djangoadmin',
+                'PASSWORD':'dbadmin',
+                'HOST':'localhost',
+                'PORT':'3306',
+                }
+
+
+      AUTH_PASSWORD_VALIDATORS: que validadores de contraseñas se estan usando
+//TODO:preguntarle a andres:
+
+  urls.py
+    maneja todas las peticiones que se reciben, una vez se reciben las enlaza con una vista
+
+//TODO:preguntarle a andres:
+  wsgy.py
+    contiene la configuracion que se va a utilizar cuando se pasa a produccion
+---------------------------------------------------------------------------------------------------
+localhost:8000
+  puerto en el que se ejecuta el proyecto de manera local si no se configura ninguna URL
+  path('random',claseOFuncion)= localhost:8000/random => permite ejecutar o acceder a funcion o clase que se esta nombrando en paths
+  
