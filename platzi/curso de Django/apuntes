@@ -12,15 +12,96 @@ pip install Django [-U]
 
 pip(3) freeze [> apuntes.txt]
     muestra los paquetes instalados [y los exporta como un txt]
-
+------------------------------------------------------------------------------------
 Django-admin
     muestra todos los comando de la interfaz de Django
+------------------------------------------------------------------------------------
 
 python[3] manage.py
     ejecuta manage.py, muestra diferentes comandos de interes para el proyecto
 
-    python[3] manage.py
-      inicia el servidor
+
+    python[3] manage.py runserver
+      ejecutar el proyecto
+    python[3] manage.py startproject
+      crea un nuevo proyecto
+    python3 manage.py startapp
+      crea un nuevo folder de aplicacion
+
+    python3 manage.py makemigrations
+      registra las migraciones que se tienen pendientes
+    python3 manage.py migrate
+      aplica los cambios en las bases de datos
+
+    python3 manage.py createsuperuser
+
+    python3 manage.py shell
+      ejecuta el shell de python con los comandos y demas configs de Django
+
+------------------------------------------------------------------------------------
+      from[pythonClass] import [class]
+        ex:from post.models import User
+        importar la clase que se va a usar
+
+      [obj name]=[class].object.create([field]=[info],
+                                       [field]=[info],)
+        permite añadir un objeto de la clase a la base de datos
+
+      [obj name].[atribute]=[content]
+        permite editar el atributo de un objeto
+
+      [obj name].save()
+        guardar objetos en la base de datos
+
+      [obj name].update([atribute = value])
+        actualiza atributos de un objeto ya existente
+
+      [obj name].delete()
+        eliminar un objeto de la base de datos
+
+          ¡**from[app].models import [class]
+      [obj name].objects.get([atribute]=[query])
+
+        permite buscar un objeto que tenga un atributo en especifico y
+        guardarlo en el objeto[obj name], solo obtiene un elemento
+          ejm: user=User.object.get(email='jhesidsteven2010@gmail.com')
+
+      obj name].objects.filter(filtro)
+      ex:user.objects.filter(filtro)
+        filtro:
+          [atribute]__endswith='[content]'
+            devuelve todos los elementos que tienen un atributo que termina en
+            [content]
+        ex:user.objects.filter(email__endswith='@gmail.com')
+          devuelve todos los correos que terminan en @gmail.com
+
+        for X in [object]:
+            Y
+        aplica Y en cada elemento guardado en el objeto
+
+
+          ------------------------
+
+          def __str__(self):
+              return self.email
+          #lo de arriba imprime el valor de email de el objeto si se llama solo
+
+          ------------------------------------------------------
+          fieldsets:
+          manejan el como se ven los campos desde /admin/
+          es una lista de tuplas que respesentan:
+          [sectname]=nombre de el fieldset(none es un valor valido)
+          [fieldOptions]=diccionario de la info de el fieldset (nombre,campos)
+
+          fieldsets=(
+            (
+              'sectname',{
+                'fields':(field name,field name),
+                (field name),
+                }
+              )
+            )
+
   ------------------------------------------------------------
 
   archivos de un proyecto nuevo
@@ -48,7 +129,8 @@ python[3] manage.py
 
 
       AUTH_PASSWORD_VALIDATORS: que validadores de contraseñas se estan usando
-//TODO:preguntarle a andres:
+
+
 
   urls.py
     maneja todas las peticiones que se reciben, una vez se reciben las enlaza con una vista
@@ -56,8 +138,46 @@ python[3] manage.py
 //TODO:preguntarle a andres:
   wsgy.py
     contiene la configuracion que se va a utilizar cuando se pasa a produccion
+-------------------------------------------------------------------------------------------------------
+dentro de una app:
+
+  apps.py
+    permite añadir y configurar algunas variables
+
+  models.py:
+    es donde se crean los modelos de base de datos(campos utilizados varian segun base de datos)
+
+  templates:
+    carpeta donde se guardan los html a usar como plantillas,si en
+    settings de el proyecto APP_DIRS=True por defecto va a buscar en la carpeta templates de cada carpeta
 ---------------------------------------------------------------------------------------------------
 localhost:8000
   puerto en el que se ejecuta el proyecto de manera local si no se configura ninguna URL
-  path('random',claseOFuncion)= localhost:8000/random => permite ejecutar o acceder a funcion o clase que se esta nombrando en paths
-  
+
+path('random',claseOFuncion)= localhost:8000/random => permite ejecutar o acceder a funcion o clase que se esta nombrando en paths
+
+
+
+
+
+-------------------------------------------------------------
+
+Glosario
+
+    ORM: Object-relational mapping. Es el encargado de permitir
+    el acceso y control de una base de datos relacional a través de
+    una abstracción a clases y objetos.
+
+    Templates: Archivos HTML que permiten la inclusión y ejecución
+    de lógica especial para la presentación de datos.
+
+    Modelo: Parte de un proyecto de Django que se encarga de estructurar
+    las tablas y propiedades de la base de datos a través de clases de Python.
+
+    Vista: Parte de un proyecto de Django que se encarga de la
+    lógica de negocio y es la conexión entre el template y el modelo.
+
+    App: Conjunto de código que se encarga de resolver una parte
+    muy específica del proyecto, contiene sus modelos, vistas, urls, etc.
+
+    Patrón de diseño: Solución común a un problema particular.
