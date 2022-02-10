@@ -4,11 +4,31 @@ from django.contrib.auth import authenticate,login,logout
 """users_views"""
 from django.contrib.auth.models import User
 from users.models import Profile
-#forms
-from users.forms import ProfileForm
-#exceptions
-from django.db.utils import IntegrityError
+from posts.models import Post
+from django.views.generic import CreateView, DetailView, ListView
 
+#forms
+from users.forms import ProfileForm,SignupForm
+from django.contrib.auth.models import User
+from django.views.generic import DetailView
+from django.urls import reverse
+#exceptions
+
+
+
+class UserDetailView(DetailView):
+    template_name='users/detail.html'
+    slug_field='username'
+    slug_url_kwarg='username'#argumento que se le pasa
+    queryset=User.objects.all()
+    contect_object_name='user'
+
+    def get_context_data(self, **kwargs):
+        """Add user's posts to context."""
+        context = super().get_context_data(**kwargs)
+        user = self.get_object()
+        context['posts'] = Post.objects.filter(user=user).order_by('-created')
+        return context
 
 
 def login_view(request):
@@ -16,63 +36,64 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
+        user = authenticate(
+            request,
+            username=username,
+            password=password
+            )
         if user:
             login(request, user)
-            return redirect('feed')
+            return redirect('posts:feed')
         else:
-            return render(request, 'users/login.html', {'error': 'Invalid username and password'})
+            return render(request,
+            'users/login.html',
+            {'error': 'Invalid username and password'})
 
     return render(request, 'users/login.html')
-
 
 
 
 @login_required
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('users:login')
 
 
 def signup(request):
     """Sign up view."""
     if request.method == 'POST':
-        #recordar usar en post[los nombres asignados a los campos en el formulario
-        #para asegurarse de que si pueda acceder a los datos
-        username = request.POST['username']
-        passwd = request.POST['passwd']
-        passwd_confirmation = request.POST['passwd_confirmation']
-
-        if passwd != passwd_confirmation:
-            return render(request, 'users/signup.html', {'error': 'Password confirmation does not match'})
-
-        try:
-            user = User.objects.create_user(username=username, password=passwd)
-        except IntegrityError:
-            return render(request, 'users/signup.html', {'error': 'Username is already in user'})
-
-        user.first_name = request.POST['first_name']
-        user.last_name = request.POST['last_name']
-        user.email = request.POST['email']
-        user.save()
-
-        profile = Profile(user=user)
-        profile.save()
-
-        return redirect('login')
-
-    return render(request, 'users/signup.html')
+        form =SignupForm(request.Post)
+        if form.is_valid():
+            form.save()
+            return redirect('users:login')
+    else:
+        form=SignupForm()
+    return render(
+        request=request,
+        template_name='users/signup.html',
+        context={'form':form}
+    )
 
 
 @login_required
 def update_profile(request):
-
     profile=request.user.profile
 
     if request.method=='POST':
-        form=ProfileForm(request.POST)
+        form=ProfileForm(request.POST, request.FILES)
+        print(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
+            data=form.cleaned_data
+
+            profile.website = data['website']
+            profile.phone_number = data['phone_number']
+            profile.biography = data['biography']
+            profile.picture = data['picture']
+            profile.save()
+
+            url = reverse('users:detail', kwargs={'username': request.user.username})
+            return redirect(url)
+
     else:
         form=ProfileForm()
 

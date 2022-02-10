@@ -19,11 +19,10 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include
 #local
 from platzigram import views as local_views
-from posts import views as posts_views
-from users import views as users_views
+
 urlpatterns = [
 #se accede creando un super usuario con manage.py
     path('admin/', admin.site.urls),
@@ -32,12 +31,20 @@ urlpatterns = [
     path('hi/',local_views.hi,name='hi'),
     path('sorted/',local_views.calc,name='sort'),
     path('menor/<str:name>/<int:age>',local_views.menor,name='hi'),
-    #posts path:
-    path('posts/', posts_views.list_posts, name='feed'),
-    path('users/login/', users_views.login_view, name='login'),
-    path('users/logout/', users_views.logout_view, name='logout'),
-    path('users/signup/', users_views.signup, name='signup'),
-    path('users/me/profile/', users_views.update_profile, name='update_profile'),
+
+    #posts path
+    # path('', posts_views.list_posts, name='feed'),
+    # path('posts/new', posts_views.create_post, name='create_posts'),
+    path('',include(('posts.urls','posts'),namespace='posts')),
+
+    #users path
+    # path('users/login/', users_views.login_view, name='login'),
+    # path('users/logout/', users_views.logout_view, name='logout'),
+    # path('users/signup/', users_views.signup, name='signup'),
+    # path('users/me/profile/', users_views.update_profile, name='update_profile'),
+
+    #path('ruta/'.include((archivo de la app,app),namespace='nombre de url'))
+    path('users/',include(('users.urls','users'),namespace='users'))
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 # la siguiente linea le suma a urlpatterns una url estatica con el valor MEDIA_URL
 # y MEDIA_ROOT, el primero es donde se encuentra la media que estamos buscando

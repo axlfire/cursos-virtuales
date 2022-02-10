@@ -1,4 +1,4 @@
--python3 .m venv [Name]
+ -python3 .m venv [Name]
   crear un entorno virtual
 
 source [Name]/bin/activate
